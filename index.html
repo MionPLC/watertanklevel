@@ -75,15 +75,9 @@ section {
     margin-bottom: 60px;
 }
 
-code {
-    background: #eee;
-    padding: 3px 6px;
-    border-radius: 4px;
-}
-
 pre {
-    background: #1e1e1e;
-    color: #fff;
+    background: #eee; /*#1e1e1e*/
+    color: #1e1e1e; /*#fff*/
     padding: 15px;
     border-radius: 6px;
     overflow-x: auto;
@@ -130,6 +124,43 @@ pre {
     border: none;
 }
 
+/* container addressing */
+#addressing {
+    max-width: 900px;
+}
+
+/* semua code jadi tag */
+#addressing code {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 7px;
+    margin: 2px 4px 2px 0;
+    border-radius: 8px;
+    background: #eee;
+    color: #888;
+    font-family: Consolas, monospace;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+/* biar auto turun baris */
+#addressing {
+    line-height: 1.9;
+}
+
+.tag-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.script-code {
+    border: none;
+    height: 200px;
+    width: 100%;
+}
+
 /* ===== MOBILE ===== */
 @media (max-width: 900px) {
     .sidebar {
@@ -139,6 +170,10 @@ pre {
     .content {
         margin-left: 0;
         padding: 20px;
+    }
+    #addressing code {
+        font-size: 12px;
+        padding: 5px 8px;
     }
 }
 </style>
@@ -153,7 +188,6 @@ pre {
     <a href="#addressing">Pengalamatan</a>
     <a href="#flowchart">Flowchart</a>
     <a href="#scripting">Script</a>
-    <a href="#simulation">Simulasi</a>
 </div>
 
 <!-- ===== CONTENT ===== -->
@@ -167,9 +201,11 @@ pre {
     <section id="overview">
         <h2>Ringkasan</h2>
         <p>
-        This section explains how to install the PIStudio software step by step.
-        Follow the instructions carefully to ensure proper installation.
+        Anda bisa melihat video dibawah untuk melihat cara kerja system yang telah dibuat:
         </p>
+        <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/5TC5ngysSnM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
     </section>
 
     <section id="requirements">
@@ -182,11 +218,17 @@ pre {
     <section id="addressing">
         <h2>Pengalamatan</h2>
         <p>Input</p>
-        <code>START=@B_M0</code> <code>STOP=@B_M1</code> <code>OPEN=@B_M2</code> <code>CLOSE=@B_M3</code>
+        <div class="tag-group">
+            <code>START=@B_M0</code><code>STOP=@B_M1</code><code>OPEN=@B_M2</code><code>CLOSE=@B_M3</code>
+        </div>
         <p>Output</p>
-        <code>SYSTEM=@B_M12</code> <code>PUMP=@B_M10</code> <code>ControlValve=@B_M15</code> <code>FlowPump=@B_M16</code> <code>FlowControlValve=@B_M11</code>
+        <div class="tag-group">
+            <code>SYSTEM=@B_M12</code><code>PUMP=@B_M10</code><code>ControlValve=@B_M15</code><code>FlowPump=@B_M16</code><code>FlowControlValve=@B_M11</code>
+        </div>
         <p>Instruksi</p>
-        <code>SVLowLevel=@W_D10</code> <code>SVHighLevel=@W_D11</code> <code>PVLevel=@W_D20</code> <code>Indicator=@W_D40</code>
+        <div class="tag-group">
+            <code>SVLowLevel=@W_D10</code><code>SVHighLevel=@W_D11</code><code>PVLevel=@W_D20</code><code>Indicator=@W_D40</code>
+        </div>
     </section>
 
     <section id="flowchart">
@@ -205,41 +247,32 @@ pre {
         <ol>
             <li>Initial</li>
 <pre>
-Step 1: test
-</pre>
-<pre>
-Step 2: test
+-
 </pre>
             <li>Close</li>
 <pre>
-Step 1: test
+-
 </pre>
             <li>Timing</li>
 <pre>
-Step 1: test
+Interfal 1*10ms(cycle)
+<iframe src="main.mion" class="script-code"></iframe>
+</pre>
+<pre>
+Interfal 100*10ms(cycle)
+<iframe src="timer.mion" class="script-code"></iframe>
 </pre>
             <li>Trigger Bit</li>
 <pre>
-Step 1: test
+-
 </pre>
         </ol>
 <pre>
 Catatan:
-Sesuaikan dengan alamat yang digunakan. atau bisa langsung menggunakan file <a href="WATERTANKLEVEL.rar">WATERTANKLEVEL.rar</a>
+Sesuaikan dengan alamat yang digunakan. atau bisa langsung menggunakan file <a style="color: #eee; background-color: #888;" href="WATERTANKLEVEL.rar">WATERTANKLEVEL.rar</a>
 </pre>
     </section>
 
-    <section id="simulation">
-        <h2>Simulasi</h2>
-        <p>
-        Setelah semua telah terpenuhi, anda bisa melihat contoh video simulasi dibawah ini:
-        </p>
-
-        <div class="video-container">
-		    <iframe width="560" height="315" src="https://www.youtube.com/embed/5TC5ngysSnM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-		</div>
-
-    </section>
 </div>
 
 <!-- ===== JAVASCRIPT ===== -->
