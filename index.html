@@ -76,8 +76,8 @@ section {
 }
 
 pre {
-    background: #eee; /*#1e1e1e*/
-    color: #1e1e1e; /*#fff*/
+    background: #1e1e1e; /*#1e1e1e*/
+    color: #fff; /*#fff*/
     padding: 15px;
     border-radius: 6px;
     overflow-x: auto;
@@ -246,26 +246,82 @@ pre {
         <h2>Contoh script</h2>
         <ol>
             <li>Initial</li>
-<pre>
--
-</pre>
+<pre>-</pre>
             <li>Close</li>
-<pre>
--
-</pre>
+<pre>-</pre>
             <li>Timing</li>
 <pre>
 Interfal 1*10ms(cycle)
-<iframe src="main.html" class="script-code"></iframe>
+
+SVLOW=@W_D10
+SVHIGH=@W_D11
+
+IF SVLOW&gt0 THEN '\\WPSTATUS,FL1,LP1\\ON
+    IF SVHIGH&gtSVLOW AND @B_M0=1 THEN
+        @B_M10=1
+        @B_M16=1
+        @B_M12=1
+    ENDIF
+ENDIF
+
+IF @W_D20&gtSVHIGH THEN '\\WPSTATUS,FL1\\OFF
+    @B_M10=0
+    @B_M16=0
+    IF @W_D20&ltSVLOW AND @B_M1=0 THEN
+        @B_M10=1
+        @B_M16=1
+        @B_M12=1
+    ENDIF
+ENDIF
+
+IF @W_D20&gtSVLOW THEN '\\CVSTATUS,FL2\\ON,OFF
+    IF @B_M3=1 THEN
+        @B_M11=0
+        @B_M15=0
+    ELSE
+        IF @B_M2=1 THEN
+            @B_M11=1
+            @B_M15=1
+        ENDIF
+    ENDIF
+ELSE
+    @B_M11=0
+    @B_M15=0
+ENDIF
+
+IF @B_M1=1 THEN
+    @B_M10=0
+    @B_M40=0
+    @W_D20=0
+    @B_M15=0
+    @B_M16=0
+    @B_M11=0
+    @W_D31=0
+    @B_M12=0
+ENDIF
+
+IF @W_D20&ltSVLOW THEN
+    @W_D40=0
+ELSE
+    IF @W_D20&ltSVHIGH THEN
+        @W_D40=1
+    ELSE
+        @W_D40=2
+    ENDIF
+ENDIF
 </pre>
 <pre>
 Interfal 100*10ms(cycle)
-<iframe src="timer.html" class="script-code"></iframe>
+
+IF @B_M16=1 THEN
+    @W_D20=@W_D20+5
+ENDIF
+IF @B_M11=1 THEN
+    @W_D20=@W_D20-2
+ENDIF
 </pre>
             <li>Trigger Bit</li>
-<pre>
--
-</pre>
+<pre>-</pre>
         </ol>
 <pre>
 Catatan:
